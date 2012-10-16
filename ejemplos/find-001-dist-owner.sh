@@ -13,6 +13,7 @@ USEREXEC=`whoami`
 
 if [ ${USEREXEC} != "root" ];then
     echo "* EJECUTA ESTE SCRIPT COMO ROOT PARA OBTENER MAS RESULTADOS"
+    exit 1
 else
     find / ! -user ${USER} -exec ls -ltrh {} \;
 fi
