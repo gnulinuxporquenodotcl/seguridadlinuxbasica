@@ -4,7 +4,7 @@
 #
 #  Firewall Builder  fwb_ipt v5.1.0.3599
 #
-#  Generated Tue Oct 16 04:46:20 2012 CLST by ed00m
+#  Generated Tue Oct 16 04:55:35 2012 CLST by ed00m
 #
 # files: * soloweb.fw /etc/fw/soloweb.fw
 #
@@ -285,8 +285,8 @@ load_modules() {
 
 verify_interfaces() {
     :
-    echo "Verifying interfaces: eth0 lo"
-    for i in eth0 lo ; do
+    echo "Verifying interfaces: eth3 lo"
+    for i in eth3 lo ; do
         $IP link show "$i" > /dev/null 2>&1 || {
             log "Interface $i does not exist"
             exit 1
@@ -312,7 +312,7 @@ run_epilog_and_exit() {
 configure_interfaces() {
     :
     # Configure interfaces
-    update_addresses_of_interface "eth0 192.168.0.144/24" ""
+    update_addresses_of_interface "eth3 192.168.0.144/24" ""
     update_addresses_of_interface "lo 127.0.0.1/8" ""
 }
 
@@ -333,13 +333,13 @@ script_body() {
 
     # ================ Table 'filter', rule set Policy
     # 
-    # Rule 0 (eth0)
+    # Rule 0 (eth3)
     # 
-    echo "Rule 0 (eth0)"
+    echo "Rule 0 (eth3)"
     # 
     $IPTABLES -N Cid17236X32552.0
-    $IPTABLES -A INPUT -i eth0   -s 127.0.0.1   -j Cid17236X32552.0
-    $IPTABLES -A INPUT -i eth0   -s 192.168.0.144   -j Cid17236X32552.0
+    $IPTABLES -A INPUT -i eth3   -s 127.0.0.1   -j Cid17236X32552.0
+    $IPTABLES -A INPUT -i eth3   -s 192.168.0.144   -j Cid17236X32552.0
     $IPTABLES -N In_RULE_0
     $IPTABLES -A Cid17236X32552.0  -d 127.0.0.1   -j In_RULE_0
     $IPTABLES -A Cid17236X32552.0  -d 192.168.0.144   -j In_RULE_0
@@ -435,7 +435,7 @@ test -z "$cmd" && {
 
 case "$cmd" in
     start)
-        log "Activating firewall script generated Tue Oct 16 04:46:20 2012 by ed00m"
+        log "Activating firewall script generated Tue Oct 16 04:55:35 2012 by ed00m"
         check_tools
          prolog_commands 
         check_run_time_address_table_files
